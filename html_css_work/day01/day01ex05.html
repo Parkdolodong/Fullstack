@@ -12,26 +12,49 @@
             background-color: yellow;
             border: 2px solid red;
             /*left는 요소가 레이어야 적용된다. postion*/
-            position: absolute;
+            position: relative;
             left: 0px;
-            transition: left 0.5s;
+            transition: all 0.5s;
         }
     </style>
 </head>
 <body>
-    <button id="return">0, 0</button>
-    <button id="playBtn1">0, 200</button>
-    <button id="playBtn1">200, 200</button>
-    <button id="playBtn1">200, 0</button>
+    <button id="playBtn1">0, 0</button>
+    <button id="playBtn2">0, 200</button>
+    <button id="playBtn3">200, 200</button>
+    <button id="playBtn4">200, 0</button>
     <div id="box">Box</div>
 
     <script>
         let colors =["blue", "orange", "brown", "pink"];
-        let playBtn = document.getElementById("playBtn");
+        let playBtn1 = document.getElementById("playBtn1");
+        let playBtn2 = document.getElementById("playBtn2");
+        let playBtn3 = document.getElementById("playBtn3");
+        let playBtn4 = document.getElementById("playBtn4");
         let box = document.getElementById("box");
         
-        playBtn.onclick = function(evnet) {
-            box.style.left = "300px";
+        playBtn1.onclick = function(evnet) {
+            box.style.left = "0px";
+            box.style.top = "0px";
+            box.style.backgroundColor = colors[0];
+        }
+
+        playBtn2.onclick = function(evnet) {
+            box.style.left = "0px";
+            box.style.top = "200px";
+            box.style.backgroundColor = colors[1];
+        }
+
+        playBtn3.onclick = function(evnet) {
+            box.style.left = "200px";
+            box.style.top = "200px";
+            box.style.backgroundColor = colors[2];
+        }
+
+        playBtn4.onclick = function(evnet) {
+            box.style.left = "200px";
+            box.style.top = "0px";
+            box.style.backgroundColor = colors[3];
         }
     </script>
 </body>
