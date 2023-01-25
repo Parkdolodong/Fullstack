@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            border: 2px solid red;
+            /*left는 요소가 레이어야 적용된다. postion*/
+            position: absolute;
+            left: 0px;
+            transition: left 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <button id="return">0, 0</button>
+    <button id="playBtn1">0, 200</button>
+    <button id="playBtn1">200, 200</button>
+    <button id="playBtn1">200, 0</button>
+    <div id="box">Box</div>
+
+    <script>
+        let colors =["blue", "orange", "brown", "pink"];
+        let playBtn = document.getElementById("playBtn");
+        let box = document.getElementById("box");
+        
+        playBtn.onclick = function(evnet) {
+            box.style.left = "300px";
+        }
+    </script>
+</body>
+</html>
