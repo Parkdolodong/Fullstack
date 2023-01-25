@@ -1,2 +1,2 @@
-# frontend_work
-프론트엔드 연습
+# frontend_study
+프론트엔드 학습
