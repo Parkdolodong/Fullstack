@@ -20,9 +20,9 @@
 </head>
 <body>
     <button id="playBtn1">0, 0</button>
-    <button id="playBtn2">0, 200</button>
-    <button id="playBtn3">200, 200</button>
-    <button id="playBtn4">200, 0</button>
+    <button id="playBtn2">200, 0</button>
+    <button id="playBtn3">0, 200</button>
+    <button id="playBtn4">200, 200</button>
     <div id="box">Box</div>
 
     <script>
@@ -40,20 +40,20 @@
         }
 
         playBtn2.onclick = function(evnet) {
-            box.style.left = "0px";
-            box.style.top = "200px";
+            box.style.left = "200px";
+            box.style.top = "0px";
             box.style.backgroundColor = colors[1];
         }
 
         playBtn3.onclick = function(evnet) {
-            box.style.left = "200px";
+            box.style.left = "0px";
             box.style.top = "200px";
             box.style.backgroundColor = colors[2];
         }
 
         playBtn4.onclick = function(evnet) {
             box.style.left = "200px";
-            box.style.top = "0px";
+            box.style.top = "200px";
             box.style.backgroundColor = colors[3];
         }
     </script>
