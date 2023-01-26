@@ -17,15 +17,64 @@
 </head>
 <body>
     <h1>계산기</h1>
-    <input type="text"><br/>
+    <input type="text" id="result"><br/>
     <div id="calc"></div>
 
     <script>
         let calc = document.getElementById("calc");
+        let result = document.getElementById("result");
+        let Arr = [1, 2, 3, "+", 4, 5, 6, "-", 7, 8, 9, "*", 0, "C", "=", "/"];
+        let str, num1, num2;
+
         for(let i=0; i<16; i++) {
             let newBtn = document.createElement("button");
-            newBtn.innerText = i;
+            newBtn.innerText = Arr[i];
             calc.appendChild(newBtn);
+
+            newBtn.onclick = function(event) {
+                result.value += this.innerText;
+                if(this.innerText == "C"){
+                    result.value = null;
+                }
+                if(this.innerText == "="){
+                    for(let oper in result.value){
+                        switch(result.value[oper]) {
+                            case "+":
+                                str = result.value.split("+");
+                                num1 = str[0];
+                                num2 = str[1].split("=")[0];
+                                result.value += (Number(num1) + Number(num2));
+                                break;
+
+                            case "-":
+                                str = result.value.split("-");
+                                num1 = str[0];
+                                num2 = str[1].split("=")[0];
+                                if ((Number(num1) - Number(num2)) < 0) {
+                                    result.value += num1;
+                                }
+                                else {
+                                    result.value += (Number(num1) - Number(num2));
+                                }
+                                break;
+
+                            case "*":
+                                str = result.value.split("*");
+                                num1 = str[0];
+                                num2 = str[1].split("=")[0];
+                                result.value += (Number(num1) * Number(num2));
+                                break;
+
+                            case "/":
+                                str = result.value.split("/");
+                                num1 = str[0];
+                                num2 = str[1].split("=")[0];
+                                result.value += (Number(num1) / Number(num2));
+                                break;
+                        }
+                    }
+                }
+            }
         }
     </script>
 </body>

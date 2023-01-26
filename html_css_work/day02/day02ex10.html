@@ -28,9 +28,35 @@
         let result = document.querySelector("#result");
 
         resultBtn.onclick = function(event) {
-            console.log(num1.value);
-            result.value = Number(num1.value) + Number(num2.value);
-            result.innerHTML = "결과 : " + result.value;
+            switch(oper.value) {
+                case "+":
+                    result.value = Number(num1.value) + Number(num2.value);
+                    result.innerHTML = "결과 : " + result.value;
+                    break;
+
+                case "-":
+                    result.value = Number(num1.value) - Number(num2.value);
+                    if(result.value < 0){
+                        result.innerHTML = "결과 : " + num1.value;
+                    }
+                    else {
+                        result.innerHTML = "결과 : " + result.value;
+                    }
+                    break;
+
+                case "*":
+                    result.value = Number(num1.value) * Number(num2.value);
+                    result.innerHTML = "결과 : " + result.value;
+                    break;
+
+                case "/": 
+                    result.value = Number(num1.value) / Number(num2.value);
+                    result.innerHTML = "결과 : " + result.value;
+                    break;
+                
+                default:
+                    result.innerHTML = "ERROR"
+            }
         }
     </script>
 </body>
