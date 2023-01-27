@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day03ex02.html</title>
+</head>
+<body>
+    <div id="demo"></div>
+
+    <script>
+        //let arr = ne Array();
+        let arr = ["오징어", "꼴뚜기", "대구", "명태"];
+        // console.log(arr);
+        // console.log("size : ", arr.length);
+        // arr.push("거북이");
+        // console.log(arr);
+        // console.log("size : ", arr.length);
+        console.log("arr[0] = ", arr[0]);
+        console.log("arr[2] = ", arr[2]);
+        arr[1] = "메뚜기"
+        console.log(arr);
+        arr.splice(2, 1);
+        console.log(arr);
+
+        for(let i=0; i<arr.length; i++) {
+            console.log(arr[i]);
+        }
+
+        for(let fish of arr) {
+            console.log(fish);
+        }
+
+        for(let fish in arr) {
+            console.log(fish);
+        }
+
+        arr.forEach(function(item, index) {
+            console.log(item, index);
+        });
+
+        let newHTML = arr.map(function(item, index) {
+            return "<p>"+item+"</p>";
+        });
+        console.log(newHTML);
+        document.getElementById("demo").innerHTML = newHTML;
+    </script>
+</body>
+</html>
