@@ -63,7 +63,7 @@
             let delBtnList = document.querySelectorAll(".delBtn");
             for(let i=0; i<delBtnList.length; i++){
                 delBtnList[i].onclick = function(event) {
-                    console.log(event.target.dataset.no);
+                    // console.log(event.target.dataset.no);
                     let no = parseInt(event.target.dataset.no);
                     for(let j=0; j<todoList.length; j++) {
                         if(todoList[j].no == no) {
@@ -108,6 +108,7 @@
 </body>
 </html>
 
+<!-- 내가 짠 코드 -->
 <!-- addBtn.onclick = function(event) {
     let newWorkValue = newWork.value;
     // 1. todoList 배열에 먼저 추가.
