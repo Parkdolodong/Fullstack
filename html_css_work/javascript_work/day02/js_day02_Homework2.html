@@ -22,24 +22,31 @@
             height: 100px;
             border: 1px solid black;
             list-style: none;
+            text-align: center;
+            font-size: 79px;
+        }
+
+        button#sBtn, button#rBtn {
+            width: 50px;
+            height: 30px;
         }
     </style>
 </head>
 <body>
     <h1>햄버거 하우스 게임</h1>
     <div class="gameBox"></div>
-
+    <button id="sBtn">Start</button>
     <script>
         function MakeUl(gameBox) {
             this.init = function() {
                 this.ulTag = document.createElement("ul");
-                for(var i=1; i<=10; i++) {
+                this.indexArr = selectIndex(10, 10);
+                for(var i=0; i<10; i++) {
                     var li = document.createElement("li");
-                    li.innerText = i;
+                    li.innerText = this.indexArr[i];
                     this.ulTag.appendChild(li);
                 }
                 gameBox.appendChild(this.ulTag);
-
                 // 게임 실행
                 this.play();
             }
@@ -47,14 +54,12 @@
             this.play = function() {
                 this.ulTag.style.position = "relative";
                 var y = 0;
-                var stop = Math.abs(Math.floor(Math.random()*5 ) );
-                console.log("그만");
+                var stop = Math.abs(Math.floor(Math.random()*5));
                 var cnt = 0;
                 var refInterval = setInterval(() => {
                     y -= 10;
                     if(y <= -1000) {
                         y = 0;
-                        console.log(cnt, stop);
                         if(cnt >= stop) {
                             clearTimeout(refInterval);
                         }
@@ -63,12 +68,32 @@
                     this.ulTag.style.top = y + "px";
                 }, 10);
             }
+
+        }
+
+        // 1부터 10까지 겹치지 않게 난수 생성
+        let selectIndex = function(totalIndex, sNumber) {
+            let rArr = []
+            for (let i=0; i<sNumber; i++) {   
+                rNum = Math.abs(Math.floor(Math.random()*totalIndex+1));
+                if (rArr.indexOf(rNum) === -1) {
+                    rArr.push(rNum);
+                } 
+                else { 
+                    i--;
+                }
+            }
+            // console.log(rArr);
+            return rArr;
         }
 
         var gameBox = document.querySelector(".gameBox");
-        new MakeUl(gameBox).init();
-        new MakeUl(gameBox).init();
-        new MakeUl(gameBox).init();
+        let sBtn = document.getElementById("sBtn");
+        sBtn.onclick = function() {
+            new MakeUl(gameBox).init();
+            new MakeUl(gameBox).init();
+            new MakeUl(gameBox).init();
+        }
     </script>
 </body>
 </html>
