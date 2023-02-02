@@ -71,7 +71,7 @@
 
         }
 
-        // 1부터 10까지 겹치지 않게 난수 생성
+        // 중첩되지 않게 1부터 10까지의 난수 생성
         let selectIndex = function(totalIndex, sNumber) {
             let rArr = []
             for (let i=0; i<sNumber; i++) {   
@@ -80,7 +80,7 @@
                     rArr.push(rNum);
                 } 
                 else { 
-                    i--;
+                    i -= 1;
                 }
             }
             // console.log(rArr);
