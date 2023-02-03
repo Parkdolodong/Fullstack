@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var num;
+        console.log(num);
+        console.log(undefined);
+        console.log(NaN);
+        console.log(null);
+        // if ~ else
+        // undefined, nll, NaN등은 false와 동일하다.
+        // if(!num) {
+        //     document.write("true 입니다.");
+        // }
+        // else {
+        //     document.write("false 입니다.");
+        // }
+
+        var age = parseInt(prompt("나이 입력: ")); // 팝업창으로 데이터
+        document.write(`<h2>당신의 나이는 ${age}세입니다.</h2>`);
+        if(age > 19) {
+            var isAdolt = "성인";
+        }
+        else {
+            var isAdolt = "미성년";
+        }
+        document.write(`당신은 ${isAdolt}입니다.`);
+    </script>
+</body>
+</html>
