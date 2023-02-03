@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js_day03ex04_1.html</title>
+</head>
+<body>
+    <h1>난수 발생기 (Random)</h1>
+    <div id="demo"></div>
+
+    <script>
+        let number =1 + Math.floor(Math.random() * 45);
+        console.log(number)
+        
+        // 45~100사이의 난수만 발생하도록 한다.
+        let number2 = Math.floor(Math.random() * 55 + 45);
+        console.log(number2)
+
+        let selectIndex = function(totalIndex, sNumber) {
+            let rArr = []
+            for (let i=0; i<sNumber; i++) {   
+                rNum = Math.floor(Math.random() * 56 + 45);
+                if (rArr.indexOf(rNum) === -1) {
+                    rArr.push(rNum);
+                } 
+                else { 
+                    i -= 1;
+                }
+            }
+            return rArr;
+        }
+
+        function sortNumber(a, b){
+            return a - b;
+        }
+
+        let r = selectIndex(56, 56);
+        console.log(r.sort(sortNumber));
+
+    </script>
+</body>
+</html>

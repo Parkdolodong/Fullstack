@@ -21,16 +21,19 @@
         // else {
         //     document.write("false 입니다.");
         // }
-
-        var age = parseInt(prompt("나이 입력: ")); // 팝업창으로 데이터
+        // prompt로 입력 받은 데이터의 타입은 string이다.
+        // number형식으로 사용하기 위해서 parseInt(), Number()로 형변환
+        // const age = parseInt(prompt("나이 입력: ")); // 팝업창으로 데이터
+        // Number()로 형변환 하면 NaN일 경우 0을 반환한다. 
+        const age = Number(prompt("나이 입력: ")); // 팝업창으로 데이터
         document.write(`<h2>당신의 나이는 ${age}세입니다.</h2>`);
         if(age > 19) {
-            var isAdolt = "성인";
+            var isAdult = "성인";
         }
         else {
-            var isAdolt = "미성년";
+            var isAdult = "미성년";
         }
-        document.write(`당신은 ${isAdolt}입니다.`);
+        document.write(`당신은 ${isAdult}입니다.`);
     </script>
 </body>
 </html>
