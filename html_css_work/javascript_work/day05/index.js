@@ -18,7 +18,7 @@ const saramList = [
     {"no":4, "name":"kang", "email":"kang@saram.com", "phone":"010-1111-4444"},
     {"no":5, "name":"choi", "email":"choi@saram.com", "phone":"010-1111-5555"},
     {"no":6, "name":"test", "email":"test@saram.com", "phone":"010-1111-6666"}
-] 
+]; 
 
 app.get("/saram/list", (req, res) => {
     res.send({saramList}); // {saramList : saramList}
