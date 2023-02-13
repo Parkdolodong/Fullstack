@@ -2,3 +2,7 @@ input[disabled] {
     border: 1px;
     background-color: white;
 }
+
+input.checkItem {
+    text-decoration: line-through;
+}

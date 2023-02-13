@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import "./App.css";
 
-function ItemRow({item, removeItem}) {
+function ItemRow({item, removeItem, checkItem}) {
     return (
         <li>
             <p>
                 <input type="checkbox"
                     onClick={(e)=> {
-                        console.log("checkbox");
+                        checkItem(item.done, item.no);
                     }
                 }/>
-                <span><input type="text" value={item.title} disabled/></span>
+                <input type="text" value={item.title} disabled className={item.done ? "checkItem" : "none"}/>
                 <button 
                     onClick={(e)=> {
                         removeItem(item.no);
@@ -34,7 +34,6 @@ function InputItem({appendItem}) {
                 value={newWork} 
                 onChange={(e)=> {
                     setNewWork(e.target.value);
-                    console.log(e.target.value);
                 }}
             />
             <button 
@@ -48,23 +47,18 @@ function InputItem({appendItem}) {
     );
 }
 
-function TodoList({todoList, removeItem}) {
+// Redux를 이용하면 해결된다
+function TodoList({todoList, removeItem, checkItem}) {
     return (
         <div>
             <ul>
                 {todoList.map((item, idx)=> {
-                    return <ItemRow key={item.no} item={item} removeItem={removeItem}/>;
+                    return <ItemRow key={item.no} item={item} removeItem={removeItem} checkItem={checkItem}/>;
                 })}
             </ul>
         </div>
     );
 }
-
-// function checkItem() {
-//     return(
-
-//     );
-// }
 
 function App() {
     // 과제 1: 취소선 기능 추가
@@ -75,19 +69,33 @@ function App() {
         {no: 3, title: "배운 것 복습하기", done: false},
         {no: 4, title: "내일 수업 예습하기", done: false}
     ]);
+    const [noCount, setNoCount] = useState(5);
 
     function appendItem(newItem) {
-        let noCount = todoList.length + 1
+        console.log(noCount);
         setTodoList([...todoList, {no: noCount, title: newItem, done: false}]);
-        noCount++;
-
+        setNoCount(noCount + 1);
+        localStorage.setItem("todoList", JSON.stringify([...todoList, {no: noCount, title: newItem, done: false}]));
     }
 
     function removeItem(no) {
-        let newList = todoList.filter((item, idx)=> {
+        const newList = todoList.filter((item, idx)=> {
+            console.log("item.no: ", item.no, "no: ", no);
             return item.no !== no;
         });
         setTodoList(newList);
+        localStorage.setItem("todoList", JSON.stringify(newList));
+    }
+
+    function checkItem(done, no) {
+        const newList = todoList.map((item, idx)=> {
+            if(item.no === no) {
+                return {...item, done: item.done ? false : true};
+            }
+            return item;
+        });
+        setTodoList(newList);
+        localStorage.setItem("todoList", JSON.stringify(newList));
     }
 
     return (
@@ -95,7 +103,7 @@ function App() {
             <h1>Tdoo List</h1>
             <InputItem appendItem={appendItem} />
             <hr />
-            <TodoList todoList={todoList} removeItem={removeItem}/>
+            <TodoList todoList={todoList} removeItem={removeItem} checkItem={checkItem}/>
         </div>
     );
 }
