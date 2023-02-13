@@ -1,0 +1,4 @@
+input[disabled] {
+    border: 1px;
+    background-color: white;
+}
