@@ -3,6 +3,10 @@ input[disabled] {
     background-color: white;
 }
 
-input.checkItem {
+/* input.checkItem {
+    text-decoration: line-through;
+} */
+
+input.done {
     text-decoration: line-through;
 }
