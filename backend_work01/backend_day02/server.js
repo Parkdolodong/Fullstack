@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended:true})) // application/x-www-form-urlencode
 app.use(express.static(__dirname + "/public"));
 
 let todoList = [
-  { idx: 1, title: "hello", done: true },
+  { idx: 1, title: "hello", done: false },
   { idx: 2, title: "world", done: false },
   { idx: 3, title: "node공부", done: false }
 ];
@@ -69,8 +69,24 @@ app.get("/todoList/remove", (req, res)=> {
 
   if (todoList.length != -1) {
     todoList = num;
+    for(let i=0; i < todoList.length; i++){
+      todoList[i].idx = i + 1;
+    }
   }
+  res.redirect("/todoList");
+});
 
+app.get("/todoList/checked", (req, res)=> {
+  console.log("GET - /todoList/checked");
+  let idx = req.query.idx;
+
+  let chk = todoList.findIndex((item, i) => {
+    return item.idx == idx;
+  });
+
+  if(chk != -1){
+    todoList[chk].done = !todoList[chk].done;
+  }
   res.redirect("/todoList");
 });
 

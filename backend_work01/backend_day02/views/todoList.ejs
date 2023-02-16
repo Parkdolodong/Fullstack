@@ -10,6 +10,9 @@
         td.showInput{
             display: none;
         }
+        #chk {
+            text-decoration: line-through;
+        }
     </style>
 </head>
 <body>
@@ -34,8 +37,8 @@
     %>
         <tr>
             <td><%=todo.idx%></td>
-            <td><input type="checkbox"></td>
-            <td class="showTitle"><%=todo.title%></td>
+            <td><input type="checkbox" class="checked" <%=todo.done ? "checked" : ""%>></td>
+            <td class="showTitle" id=<%=todo.done ? "chk" : ""%>><%=todo.title%></td>
             <td class="showInput hide"><input value="<%=todo.title%>"/></td>
             <td><button class="delBtn">삭제</button></td>
             <td><button class="modifyBtn" data-idx="<%=todo.idx%>">수정</button></td>
@@ -73,6 +76,13 @@
             const row = $(this).parent().parent();
             const idx = row.find("td")[0].innerHTML;
             let urlStr = `/todoList/remove?idx=${idx}`;
+            location.assign(urlStr);
+        });
+        
+        $("input.checked").change(function() {
+            const row = $(this).parent().parent();
+            const idx = row.find("td")[0].innerHTML;
+            let urlStr = `/todoList/checked?idx=${idx}`;
             location.assign(urlStr);
         });
     </script>
