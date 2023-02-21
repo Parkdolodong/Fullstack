@@ -1,0 +1,57 @@
+body {
+    margin: 0px;
+    -webkit-user-select:none;
+    position: absolute;
+}
+
+#cv {
+    border: 12px solid brown;
+    /*width: 860px;
+    height: 645px;*/
+    background-image: url('../images/blackboard.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    float: left;
+}
+
+#menu {
+    float: left;
+}
+
+#chat {
+    float: left;
+}
+
+#clear {
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+    border: 1px solid gray;
+}
+
+#cv_pen {
+    width: 100px;
+    height: 50px;
+    float: left;
+    background-image: url('images/blackboard.jpg');
+}
+
+fieldset {
+    width: 100px;
+    height: 60px;
+    /*float: left:left;*/
+}
+
+#pen_shape {
+    position: absolute;
+    top: 20px;
+    left: 700px;
+    color: white;
+}
+
+div#messageView {
+    width: 400px;
+    height: 200px;
+    border: 1px solid gray;
+} 

@@ -30,24 +30,6 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static(__dirname + "/public"));
 app.use("/uploads",express.static(__dirname + "/uploads"));
 
-// post 전송 방식을 사용하기 때문에 bodyParser가 먼저 선언 되어야 한다.
-let storage = multer.diskStorage({
-  destination: function(req, file, callback) {
-    callback(null, "uploads");
-  },
-  filename: function(req, file, callback) {
-    callback(null, Date.now()+"_"+file.originalname);
-  }
-});
-// 파일 제한 : 10, 1G이하로 제한.
-let upload = multer({
-  storage: storage,
-  limit: {
-    files: 10, 
-    fileSize: 1024 * 1024 * 1024
-  }
-})
-
 /////// router -------
 // http로 접속하면 실행 된다.
 router.route("/home").get((req, res) => {
@@ -61,29 +43,31 @@ router.route("/home").get((req, res) => {
 const clientSocketMap = {};
 // 클라이언트가 socket으로 접속하면 실행
 io.sockets.on("connection", (socket)=>{
-  console.log("소켓으로 접속 됨.");
+    console.log('소켓 연결 됨:', socket.request.connection._peername);
 
   socket.on('linesend', function(data) {
     console.log(data);
     socket.broadcast.emit('linesend_tocllinet', data);
   });
 
-  socket.on("login", function(data) {
+//   socket.on("login", function(data) {
+//     data.socketId = socket.id;
+//     clientSocketMap[data.userId] = data;
+//     console.dir(clientSocketMap);
+//   });
+
+  socket.on("send", function(data) {
+    //console.log(io.sockets.sockets.get(socket.id));
     data.socketId = socket.id;
     clientSocketMap[data.userId] = data;
     console.dir(clientSocketMap);
-  });
-  socket.on("send", function(data) {
-    //console.log(io.sockets.sockets.get(socket.id));
-    if(data.receive === "All") {
-      io.sockets.emit("send message", data);
-      return;
-    }
-    let test01SocketId = clientSocketMap[data.receive].socketId;
-    if(test01SocketId) {
-      let test01Socket = io.sockets.sockets.get(test01SocketId);
-      test01Socket.emit("send message", data);
-    }
+    io.sockets.emit("send message", data);
+
+    // let test01SocketId = clientSocketMap[data.receive].socketId;
+    // if(test01SocketId) {
+    //   let test01Socket = io.sockets.sockets.get(test01SocketId);
+    //   test01Socket.emit("send message", data);
+    // }
   });
 
   socket.on("disconnect", function() {

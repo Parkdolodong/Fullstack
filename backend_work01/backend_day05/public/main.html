@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/chat.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>-->
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+
+    <canvas id="cv"></canvas>
+
+    <div id="menu">
+        <button id="clear">clear</button>
+        <fieldset>
+            <legend>색상변경</legend>
+            <select id="pen_color"></select>
+        </fieldset>
+        <fieldset>
+            <legend>펜 두깨</legend>
+            <select id="pen_width"></select>
+        </fieldset>
+        <fieldset id="pen_shape">
+            <legend>펜 모양</legend>
+        </fieldset>
+    </div>
+
+    <div id="chat">
+        <!-- <hr/>
+        <button id="connectBtn">연결하기</button>
+        <button id="closeBtn">접속 해제</button>
+        <hr/> -->
+        <!-- <input id="userId" value="test01">
+        <input id="userName" value="테스트01">
+        <input id="userMessage" value="테스트01입니다.">
+        <button id="loginBtn">로그인</button>
+        <hr/> -->
+        ID : <input id="userId" value="test01"/><br/>
+        전송 메세지 : <input id="sendMsg" value="hello"/><br/>
+        <button id="sendBtn">전송</button>
+        <hr/>
+        <div id="messageView">--- 메세지 보이는 영역 ---<br/></div>
+    </div>
+
+    <!-- <script>
+        var socket = null;
+        socket = io.connect("http://localhost:3000");
+        socket.on("connect", function () {
+            console.log("socket server에 연결 됨.");
+
+            socket.on("send message", function (data) {
+                console.log(data);
+                let newLine =
+                    $("div#messageView").html() + data.sender + ": " + data.msg + "<br/>";
+                $("div#messageView").html(newLine);
+            });
+        });
+
+        $("#sendBtn").click(function (e) {
+            console.log("전송버튼")
+            if (socket) {
+                let sendData = {
+                    sender: $("#userId").val(),
+                    msg: $("#sendMsg").val(),
+                };
+                socket.emit("send", sendData);
+            }
+        });
+    </script> -->
+</body>
+
+</html>
